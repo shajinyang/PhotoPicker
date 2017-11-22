@@ -48,6 +48,7 @@ captures/
 .idea/gradle.xml
 .idea/dictionaries
 .idea/libraries
+.idea/
 
 # Keystore files
 # Uncomment the following line if you do not want to check your keystore files in.
@@ -63,3 +64,7 @@ freeline.py
 freeline/
 freeline_project_description.json
 
+Spickphotos/libs/
+Spickphotos/src/main/res/anim/
+Spickphotos/src/main/res/mipmap-mdpi/
+app/libs/
