@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
                             @Override
                             public void onSucess(ArrayList<String> imagePathList) {
-                                Toast.makeText(MainActivity.this,imagePathList.size()+"张",Toast.LENGTH_SHORT).show();
                             }
                             @Override
                             public void onCancel() {
