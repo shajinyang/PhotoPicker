@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PhotoPicker.Album(MainActivity.this)
-                        .setMultiChooseSize(6)
-                        .setIsCompress(true)
-                        .setIsCrop(false)
+                        .setMultiChooseSize(1)
+                        .setIsCompress(false)
+                        .setIsCrop(true)
                         .setOnResultListener(new OnResultListener() {
 
                             @Override
