@@ -21,13 +21,13 @@
       第二步：
       在module的gradle里配置
       dependencies {
-      	        compile 'com.github.shajinyang:PhotoPicker:1.0.0'
+      	        compile 'com.github.shajinyang:PhotoPicker:1.0.1'
       	}
 
 ### 使用示例
 
 #### 常规使用
-    PickPhotos.Album(mContext)
+    PhotoPicker.Album(mContext)
                 .setMultiChooseSize(6)//设置最大选择数量
                 .setIsCompress(true)//是否压缩
                 .setIsCrop(false)//是否裁切
@@ -46,7 +46,7 @@
 
 
 #### 自定义UI细节
-    PickPhotos.Album(mContext)
+    PhotoPicker.Album(mContext)
             .setMultiChooseSize(6)//设置最大选择数量
             .setIsCompress(true)//是否压缩
             .setIsCrop(false)//是否裁切

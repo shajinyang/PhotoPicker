@@ -9,7 +9,7 @@ import com.sjy.pickphotos.pickphotos.business.PicPresenter;
  * Created by sjy on 2017/11/18.
  */
 
-public class PickPhotos {
+public class PhotoPicker {
 
     /**
      * 相册/拍照

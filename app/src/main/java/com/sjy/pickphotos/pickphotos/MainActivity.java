@@ -3,7 +3,6 @@ package com.sjy.pickphotos.pickphotos;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.sjy.pickphotos.pickphotos.listeners.OnResultListener;
 
@@ -17,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PickPhotos.Album(MainActivity.this)
+                PhotoPicker.Album(MainActivity.this)
                         .setMultiChooseSize(6)
                         .setIsCompress(true)
                         .setIsCrop(false)
