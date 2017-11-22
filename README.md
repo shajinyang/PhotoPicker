@@ -66,7 +66,7 @@
             })
             .start();
 
-### 感谢 [鲁班](https://github.com/Curzibn/Luban)
+### 感谢 [Luban压缩](https://github.com/Curzibn/Luban)
 
 
 
