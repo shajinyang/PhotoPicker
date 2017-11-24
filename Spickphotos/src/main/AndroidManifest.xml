@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <application android:theme="@style/AppTheme">
         <activity android:name=".ui.PicActivity" />
+        <activity android:name=".crop.CropActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.sjyprovider"

@@ -21,10 +21,26 @@
       第二步：
       在module的gradle里配置
       dependencies {
-      	        compile 'com.github.shajinyang:PhotoPicker:1.0.1'
+      	        compile 'com.github.shajinyang:PhotoPicker:1.1.0'
       	}
 
 ### 使用示例
+
+#### 快速使用（默认单选，不压缩，不裁剪）
+    PhotoPicker.Album(mContext)
+                    .setOnResultListener(new OnResultListener() {
+
+                        @Override
+                        public void onSucess(ArrayList<String> imagePathList) {
+                            //todo 返回图片的绝对路径集合
+                        }
+                        @Override
+                        public void onCancel() {
+
+                        }
+                    })
+                    .start();
+
 
 #### 常规使用
     PhotoPicker.Album(mContext)
@@ -66,7 +82,7 @@
             })
             .start();
 
-### 感谢 [Luban压缩](https://github.com/Curzibn/Luban)
+### 感谢 [Luban压缩](https://github.com/Curzibn/Luban) [Cropper裁切](https://github.com/edmodo/cropper)
 
 
 

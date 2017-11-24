@@ -110,11 +110,11 @@ public class PicActivity extends AppCompatActivity  {
     private void responsePics(){
         if (onResultListener != null) {
             //不压缩，不裁剪
-            if(isCompress==false&&isCrop==false){
+            if(!isCompress&&!isCrop){
                 onResultListener.onSucess(responsePaths);
             }
             //压缩不裁剪
-            else if(isCompress==true&&isCrop==false){
+            else if(isCompress&&!isCrop){
                 final ArrayList<String> newlist=new ArrayList<>();
                 final int[] i = {0};
                 if(responsePaths.size()>0){
@@ -132,7 +132,7 @@ public class PicActivity extends AppCompatActivity  {
                             i[0]++;
                             newlist.add(file.getAbsolutePath());
                             if(i[0]==responsePaths.size()){
-                                onResultListener.onSucess(responsePaths);
+                                onResultListener.onSucess(newlist);
                                 finish();
                             }
                         }
@@ -141,26 +141,55 @@ public class PicActivity extends AppCompatActivity  {
                         public void onError(Throwable e) {
                             i[0]++;
                             if(i[0]==responsePaths.size()){
-                                onResultListener.onSucess(responsePaths);
+                                onResultListener.onSucess(newlist);
                                 finish();
                             }
                         }
                     },path,PicActivity.this);
                 }
-
             }
             //裁剪不压缩
-            else if(isCompress==false&&isCrop==true){
-                    if(responsePaths.size()>0) {
-                        new CropUtil.CropBuilder()
-                                .setSourcePath(responsePaths.get(cropIndex))
-                                .create()
-                                .crop(PicActivity.this);
-                    }
+            else if(!isCompress&&isCrop){
+                if(responsePaths.size()>0) {
+                    new CropUtil.CropBuilder()
+                            .setSourcePathList(responsePaths)
+                            .create()
+                            .setCropListener(new CropUtil.OnCropResultListener() {
+                                @Override
+                                public void onSuccess(ArrayList<String> paths) {
+                                    onResultListener.onSucess(paths);
+                                    finish();
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+
+                                }
+                            })
+                            .crop(PicActivity.this);
+                }
             }
             //压缩裁剪
-            else if(isCompress==true&&isCrop==true){
+            else if(isCompress&&isCrop){
+                if(responsePaths.size()>0) {
+                    new CropUtil.CropBuilder()
+                            .setSourcePathList(responsePaths)
+                            .setCompress(true)
+                            .create()
+                            .setCropListener(new CropUtil.OnCropResultListener() {
+                                @Override
+                                public void onSuccess(ArrayList<String> paths) {
+                                    onResultListener.onSucess(paths);
+                                    finish();
+                                }
 
+                                @Override
+                                public void onError(Throwable e) {
+
+                                }
+                            })
+                            .crop(PicActivity.this);
+                }
             }
 
         }
@@ -237,21 +266,7 @@ public class PicActivity extends AppCompatActivity  {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //裁剪结果
-        if(requestCode== CropUtil.REQUEST_CODE) {
-            findViewById(R.id.title).postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    cropIndex++;
-                    if(responsePaths.size()>cropIndex) {
-                        new CropUtil.CropBuilder()
-                                .setSourcePath(responsePaths.get(cropIndex))
-                                .create()
-                                .crop(PicActivity.this);
-                    }
-                }
-            },500);
-        }else if(requestCode==TakePhotoUtil.REQUEST_CAMERA){//拍照
+        if(requestCode==TakePhotoUtil.REQUEST_CAMERA){//拍照
             File file=TakePhotoUtil.onSuccess();
             responsePaths.clear();
             responsePaths.add(file.getAbsolutePath());

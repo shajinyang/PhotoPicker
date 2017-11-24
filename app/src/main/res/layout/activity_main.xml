@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#333333"
     tools:context="com.sjy.pickphotos.pickphotos.MainActivity">
     <Button
         android:id="@+id/btn"
