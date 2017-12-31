@@ -262,7 +262,7 @@ public class PicActivity extends AppCompatActivity  {
                         Toast.makeText(PicActivity.this,"您拒绝了访问本地相册的请求，该功能将无法使用",Toast.LENGTH_SHORT).show();
                         finish();
                     }
-                },this,2514, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                },this,2514, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA);
     }
 
     @Override
