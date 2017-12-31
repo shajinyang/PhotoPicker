@@ -9,7 +9,7 @@
         <activity android:name=".crop.CropActivity" />
         <provider
             android:name=".util.SjyFileProvider"
-            android:authorities="${applicationId}.sjyprovider"
+            android:authorities="${applicationId}.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

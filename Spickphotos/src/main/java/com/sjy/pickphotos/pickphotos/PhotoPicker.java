@@ -3,6 +3,7 @@ package com.sjy.pickphotos.pickphotos;
 import android.content.Context;
 
 import com.sjy.pickphotos.pickphotos.business.PicPresenter;
+import com.sjy.pickphotos.pickphotos.util.SConstants;
 
 /**
  * 照片选择
@@ -17,6 +18,7 @@ public class PhotoPicker {
      * @return
      */
     public static PicPresenter Album(Context mContext){
+        SConstants.setmContext(mContext);
         return new PicPresenter(mContext);
     }
 

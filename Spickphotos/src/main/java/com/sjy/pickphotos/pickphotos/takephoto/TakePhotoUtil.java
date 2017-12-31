@@ -7,6 +7,7 @@ import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 
 import com.sjy.pickphotos.pickphotos.BuildConfig;
+import com.sjy.pickphotos.pickphotos.util.SConstants;
 
 import java.io.File;
 
@@ -26,7 +27,7 @@ public class TakePhotoUtil {
             outputFile.getParentFile().mkdir();
         }
         Uri contentUri = FileProvider.getUriForFile(activity,
-                BuildConfig.APPLICATION_ID + ".sjyprovider", outputFile);
+                SConstants.getmContext().getPackageName() + ".fileProvider", outputFile);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //添加权限
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
