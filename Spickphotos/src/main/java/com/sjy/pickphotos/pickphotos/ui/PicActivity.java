@@ -201,16 +201,16 @@ public class PicActivity extends AppCompatActivity  {
      * 绑定画廊数据
      * @param key
      */
-    private void bindPicData(String key){
-        PicLoader picLoader=new PicLoader(this);
-        list= picLoader.getPics();
-        listall=list.get(key);
+    private void bindPicData(final String key){
         recyclerView= findViewById(R.id.recycleview);
         recyclerView.setLayoutManager(new GridLayoutManager(PicActivity.this,3));
         PermissionRequester.getInstance()
                 .requestPermissions(new IpermissionCallBackListener() {
                     @Override
                     public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                        PicLoader picLoader=new PicLoader(PicActivity.this);
+                        list= picLoader.getPics();
+                        listall=list.get(key);
                         recyclerView.setAdapter(new CommonAdapter<PicBean>(PicActivity.this,R.layout.pick_photo_recycleview_img,listall) {
                             @Override
                             public void convert(final BaseViewHolder holder, final PicBean picBean, int position) {
@@ -259,7 +259,8 @@ public class PicActivity extends AppCompatActivity  {
                     }
                     @Override
                     public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
-
+                        Toast.makeText(PicActivity.this,"您拒绝了访问本地相册的请求，该功能将无法使用",Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 },this,2514, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE);
     }
