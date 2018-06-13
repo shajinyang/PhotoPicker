@@ -21,7 +21,7 @@
       第二步：
       在module的gradle里配置
       dependencies {
-      	        compile 'com.github.shajinyang:PhotoPicker:1.1.4'
+      	        compile 'com.github.shajinyang:PhotoPicker:1.1.5'
       	}
 
 ### 使用示例
