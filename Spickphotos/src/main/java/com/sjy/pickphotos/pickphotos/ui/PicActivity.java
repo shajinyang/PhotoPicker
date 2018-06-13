@@ -33,8 +33,9 @@ import com.sjy.pickphotos.pickphotos.R;
 import com.sjy.pickphotos.pickphotos.compress.CompressUtil;
 import com.sjy.pickphotos.pickphotos.crop.CropUtil;
 import com.sjy.pickphotos.pickphotos.listeners.OnResultListener;
-import com.sjy.pickphotos.pickphotos.permissions.IpermissionCallBackListener;
-import com.sjy.pickphotos.pickphotos.permissions.PermissionRequester;
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -204,10 +205,14 @@ public class PicActivity extends AppCompatActivity  {
     private void bindPicData(final String key){
         recyclerView= findViewById(R.id.recycleview);
         recyclerView.setLayoutManager(new GridLayoutManager(PicActivity.this,3));
-        PermissionRequester.getInstance()
-                .requestPermissions(new IpermissionCallBackListener() {
+        AndPermission.with(this)
+                .runtime()
+                .permission(Permission.CAMERA)
+                .permission(Permission.READ_EXTERNAL_STORAGE)
+                .permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .onGranted(new Action<List<String>>() {
                     @Override
-                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                    public void onAction(List<String> data) {
                         PicLoader picLoader=new PicLoader(PicActivity.this);
                         list= picLoader.getPics();
                         listall=list.get(key);
@@ -221,7 +226,7 @@ public class PicActivity extends AppCompatActivity  {
                                                 @Override
                                                 public void onClick(View v) {
                                                     TakePhotoUtil
-                                                           .camera(PicActivity.this);
+                                                            .camera(PicActivity.this);
                                                 }
                                             });
                                 }else {
@@ -257,12 +262,15 @@ public class PicActivity extends AppCompatActivity  {
                             }
                         });
                     }
+                })
+                .onDenied(new Action<List<String>>() {
                     @Override
-                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                    public void onAction(List<String> data) {
                         Toast.makeText(PicActivity.this,"您拒绝了访问本地相册的请求，该功能将无法使用",Toast.LENGTH_SHORT).show();
                         finish();
                     }
-                },this,2514, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA);
+                })
+                .start();
     }
 
     @Override
