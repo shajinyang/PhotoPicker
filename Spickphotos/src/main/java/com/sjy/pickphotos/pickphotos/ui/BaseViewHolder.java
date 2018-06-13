@@ -79,7 +79,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     public BaseViewHolder setImageResourceId(int viewId, int resId)
     {
         ImageView view = getView(viewId);
-        Glide.with(mContext).load(resId).into(view);
+        view.setImageResource(resId);
         return this;
     }
 

@@ -28,7 +28,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-    implementation 'com.github.bumptech.glide:glide:3.8.0'
+    //glide
+    implementation("com.github.bumptech.glide:glide:3.8.0") {
+        exclude group: "com.android.support"
+    }
     implementation ("com.yanzhenjie:permission:2.0.0-rc11"){
         exclude group: "com.android.support"
     }

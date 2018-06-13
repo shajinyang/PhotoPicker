@@ -113,6 +113,7 @@ public class PicActivity extends AppCompatActivity  {
             //不压缩，不裁剪
             if(!isCompress&&!isCrop){
                 onResultListener.onSucess(responsePaths);
+                finish();
             }
             //压缩不裁剪
             else if(isCompress&&!isCrop){
